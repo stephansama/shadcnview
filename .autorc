@@ -1,4 +1,8 @@
 {
+	"owner": "stephansama",
+	"repo": "shadcnview",
+	"name": "stephansama",
+	"email": "stephanrandle@hotmail.com",
 	"plugins": [
 		"git-tag",
 		["conventional-commits", { "defaultReleaseType": "patch" }],

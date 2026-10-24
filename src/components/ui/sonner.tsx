@@ -1,13 +1,15 @@
 "use client";
 
 import { Icon } from "#/components/icon";
+import { useTheme } from "#/lib/theme";
 import { Toaster as Sonner, type ToasterProps } from "sonner";
 
 const Toaster = ({ ...props }: ToasterProps) => {
-	// the app is dark only, so no next-themes provider
+	// follows the page's theme class, no next-themes provider needed
+	const theme = useTheme();
 	return (
 		<Sonner
-			theme="dark"
+			theme={theme}
 			className="toaster group"
 			icons={{
 				success: <Icon name="circleCheck" />,

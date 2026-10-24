@@ -21,6 +21,7 @@ import { Icon } from "./icon";
 import { RegistryFavicon } from "./registry-favicon";
 import { ROW_HEIGHT } from "./registry-table";
 import { StatusBar } from "./status-bar";
+import { ThemeToggle } from "./theme-toggle";
 
 // written by `pnpm snapshot`, a glob so a checkout without one still builds
 const summary = Object.values(
@@ -82,6 +83,7 @@ export function Shell() {
 					</Kbd>
 				</div>
 				<div className="ml-auto flex items-center gap-2">
+					<ThemeToggle />
 					<Button aria-label="expand all" size="icon-sm" variant="outline">
 						<Icon name="chevronsUpDown" />
 					</Button>

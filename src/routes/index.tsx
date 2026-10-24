@@ -16,6 +16,7 @@ import {
 } from "#/components/registry-table";
 import { Shell } from "#/components/shell";
 import { StatusBar } from "#/components/status-bar";
+import { ThemeToggle } from "#/components/theme-toggle";
 import { Button } from "#/components/ui/button";
 import { Drawer, DrawerContent, DrawerTitle } from "#/components/ui/drawer";
 import { Input } from "#/components/ui/input";
@@ -373,6 +374,7 @@ function Viewer() {
 						searchExpanded && "max-sm:hidden",
 					)}
 				>
+					<ThemeToggle />
 					<Button
 						aria-label={expandedAll ? "collapse all" : "expand all"}
 						onClick={() => table.toggleAllRowsExpanded(!expandedAll)}

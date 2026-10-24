@@ -23,9 +23,11 @@ import house from "virtual:iconify-svgmap/lucide/house";
 import info from "virtual:iconify-svgmap/lucide/info";
 import filter from "virtual:iconify-svgmap/lucide/list-filter";
 import loaderCircle from "virtual:iconify-svgmap/lucide/loader-circle";
+import moon from "virtual:iconify-svgmap/lucide/moon";
 import octagonX from "virtual:iconify-svgmap/lucide/octagon-x";
 import search from "virtual:iconify-svgmap/lucide/search";
 import squareTerminal from "virtual:iconify-svgmap/lucide/square-terminal";
+import sun from "virtual:iconify-svgmap/lucide/sun";
 import triangleAlert from "virtual:iconify-svgmap/lucide/triangle-alert";
 import unfoldVertical from "virtual:iconify-svgmap/lucide/unfold-vertical";
 import x from "virtual:iconify-svgmap/lucide/x";
@@ -60,9 +62,11 @@ export const icons = {
 	info,
 	linkedin,
 	loaderCircle,
+	moon,
 	octagonX,
 	search,
 	squareTerminal,
+	sun,
 	triangleAlert,
 	unfoldVertical,
 	x,

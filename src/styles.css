@@ -4,33 +4,60 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* dark only, a slate-ish terminal palette */
+/* a slate-ish terminal palette, light by default and dark under `.dark`. The
+ * preload script sets the class before paint from the saved theme or the os */
 :root {
+	--background: oklch(0.985 0.002 264);
+	--foreground: oklch(0.2 0.012 264);
+	--card: oklch(0.965 0.003 264);
+	--card-foreground: var(--foreground);
+	--popover: oklch(0.995 0.001 264);
+	--popover-foreground: var(--foreground);
+	--primary: oklch(0.21 0.012 264);
+	--primary-foreground: oklch(0.97 0.004 264);
+	--secondary: oklch(0.94 0.004 264);
+	--secondary-foreground: var(--foreground);
+	--muted: oklch(0.945 0.004 264);
+	--muted-foreground: oklch(0.5 0.015 264);
+	--accent: oklch(0.93 0.006 264);
+	--accent-foreground: var(--foreground);
+	--destructive: oklch(0.58 0.22 25);
+	--destructive-foreground: oklch(0.5 0.2 25);
+	--border: oklch(0.9 0.005 264);
+	--input: oklch(0.88 0.006 264);
+	--ring: oklch(0.65 0.02 264);
+	--radius: 0.25rem;
+
+	/* framework badges */
+	--react: oklch(0.6 0.13 230);
+	--svelte: oklch(0.62 0.19 40);
+	--vue: oklch(0.6 0.14 160);
+
+	color-scheme: light;
+}
+
+.dark {
 	--background: oklch(0.19 0.012 264);
 	--foreground: oklch(0.93 0.008 264);
 	--card: oklch(0.215 0.012 264);
-	--card-foreground: var(--foreground);
 	--popover: oklch(0.235 0.013 264);
-	--popover-foreground: var(--foreground);
 	--primary: oklch(0.93 0.008 264);
 	--primary-foreground: oklch(0.21 0.012 264);
 	--secondary: oklch(0.26 0.014 264);
-	--secondary-foreground: var(--foreground);
 	--muted: oklch(0.25 0.013 264);
 	--muted-foreground: oklch(0.68 0.015 264);
 	--accent: oklch(0.27 0.016 264);
-	--accent-foreground: var(--foreground);
 	--destructive: oklch(0.6 0.2 25);
 	--destructive-foreground: oklch(0.7 0.19 25);
 	--border: oklch(0.29 0.014 264);
 	--input: oklch(0.31 0.014 264);
 	--ring: oklch(0.5 0.03 264);
-	--radius: 0.25rem;
 
-	/* framework badges */
 	--react: oklch(0.74 0.12 230);
 	--svelte: oklch(0.7 0.18 40);
 	--vue: oklch(0.74 0.15 160);
+
+	color-scheme: dark;
 }
 
 @theme inline {
@@ -72,7 +99,6 @@
 	html,
 	body {
 		@apply h-full overflow-hidden bg-background text-foreground antialiased;
-		color-scheme: dark;
 	}
 }
 
@@ -119,5 +145,28 @@ html[data-filtered] [data-shell-filter-count] {
 	}
 	to {
 		transform: translateX(300%);
+	}
+}
+
+/*
+ * switching themes wipes the new one in from the top (src/lib/theme.ts), the
+ * old page stays put underneath instead of crossfading
+ */
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation: none;
+	mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+	animation: theme-wipe 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@keyframes theme-wipe {
+	from {
+		clip-path: inset(0 0 100% 0);
+	}
+	to {
+		clip-path: inset(0 0 0 0);
 	}
 }

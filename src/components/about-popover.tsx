@@ -19,8 +19,8 @@ const AVATAR_FALLBACK = "https://github.com/stephansama.png?size=112";
 // everything else stephan has made
 const DIRECTORY = "https://directory.stephansama.info";
 
-// brand colors on hover. github's own is near black, so it gets the white of
-// its dark mode logo instead
+// brand colors on hover. github's own is near black, so it follows the
+// theme's text color instead, like its logo does
 const SOCIALS: {
 	hover: string;
 	href: string;
@@ -28,7 +28,7 @@ const SOCIALS: {
 	label: string;
 }[] = [
 	{
-		hover: "hover:text-white",
+		hover: "hover:text-foreground",
 		href: "https://github.com/stephansama",
 		icon: "github",
 		label: "github",

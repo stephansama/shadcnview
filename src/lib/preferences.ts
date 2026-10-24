@@ -1,5 +1,5 @@
-// What the page remembers between visits: which registry groups were open and
-// how wide the detail pane was. It's read twice, by an inline script before
+// What the page remembers between visits: the theme, which registry groups
+// were open and how wide the detail pane was. It's read twice, by an inline script before
 // first paint so the prerendered shell already has that layout, and by the
 // table once it renders, so nothing jumps when one replaces the other.
 
@@ -12,6 +12,8 @@ export type Preferences = {
 	expanded?: "all" | string[];
 	/** detail pane width as a percentage of the page */
 	pane?: number;
+	/** picked with the toggle, follows the os until then */
+	theme?: "dark" | "light";
 };
 
 export const DEFAULT_PANE = 50;
@@ -50,6 +52,19 @@ function preload(key: string, columns: { id: string; size: number }[]) {
 	} catch {
 		// unreadable preferences, start from the defaults
 	}
+
+	// the theme before anything paints, so a dark page never flashes light
+	const dark =
+		preferences.theme === undefined
+			? matchMedia("(prefers-color-scheme: dark)").matches
+			: preferences.theme === "dark";
+	root.classList.toggle("dark", dark);
+	// the favicon follows the theme too, its link is parsed after this script
+	document.addEventListener("DOMContentLoaded", () => {
+		document
+			.querySelector('link[rel="icon"]')
+			?.setAttribute("href", dark ? "/logo-dark.svg" : "/logo-light.svg");
+	});
 
 	// a shared `?item=` link opens with the detail pane
 	if (parameters.get("item")) {

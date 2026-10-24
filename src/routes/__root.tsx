@@ -18,6 +18,8 @@ export const Route = createRootRoute({
 	head: () => ({
 		links: [
 			{ href: appCss, rel: "stylesheet" },
+			// swapped for logo-dark.svg or logo-light.svg to match the theme toggle,
+			// logo.svg follows the os where scripts don't run
 			{ href: "/logo.svg", rel: "icon", type: "image/svg+xml" },
 			// rendered from the logo by `pnpm og`, ios doesn't take svg icons
 			{ href: "/apple-touch-icon.png", rel: "apple-touch-icon" },
@@ -53,8 +55,8 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		// the preload script sets attributes here before react hydrates
-		<html className="dark" lang="en" suppressHydrationWarning>
+		// the preload script sets the theme class and attributes here before react hydrates
+		<html lang="en" suppressHydrationWarning>
 			<head>
 				{/* first, so the remembered layout is in place before anything paints */}
 				<script dangerouslySetInnerHTML={{ __html: PRELOAD_SCRIPT }} />

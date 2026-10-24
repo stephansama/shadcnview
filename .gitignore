@@ -21,3 +21,6 @@ public/og.png
 src/generated
 public/apple-touch-icon.png
 public/avatar.jpg
+
+# local drafts and notes, not part of the project
+notes

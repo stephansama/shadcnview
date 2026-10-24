@@ -1,6 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <rect width="32" height="32" rx="7" fill="#e6e8ee"/>
-  <g stroke="#121419" stroke-width="2.5" stroke-linecap="round">
+  <style>
+    /* dark tile with a border for dark tabs and the app, light tile when the browser is light */
+    .tile { fill: #121419; stroke: #3a3e48; }
+    .mark { stroke: #e6e8ee; }
+    @media (prefers-color-scheme: light) {
+      .tile { fill: #e6e8ee; stroke: none; }
+      .mark { stroke: #121419; }
+    }
+  </style>
+  <rect class="tile" x="0.5" y="0.5" width="31" height="31" rx="6.5"/>
+  <g class="mark" stroke-width="2.5" stroke-linecap="round">
     <path d="M7.5 10.5h11M7.5 16h8M7.5 21.5h5"/>
     <path d="M24.5 8.5 18.5 23.5"/>
   </g>

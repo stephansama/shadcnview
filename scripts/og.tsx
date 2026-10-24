@@ -75,8 +75,13 @@ const FRAMEWORK_ICONS: Record<Framework, [string, string]> = {
 const frameworkIcon = (framework: Framework) =>
 	icon(...FRAMEWORK_ICONS[framework]);
 
-// the site's own mark, `public/logo.svg`
-const logo = await dataUri(path.join(ROOT, "public/logo.svg"), "image/svg+xml");
+// the site's own mark, `public/logo.svg`, in its dark mode colors: the light
+// mode swap lives in a media query, dropped here so the renderer can't pick it
+const LIGHT_MODE =
+	/@media \(prefers-color-scheme: light\)\s*\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}/;
+const logoSource = await readFile(path.join(ROOT, "public/logo.svg"), "utf8");
+const logoSvg = logoSource.replace(LIGHT_MODE, "");
+const logo = `data:image/svg+xml;base64,${Buffer.from(logoSvg).toString("base64")}`;
 // downloaded by `pnpm snapshot`, which runs first
 const avatar = await dataUri(
 	path.join(ROOT, "public/avatar.jpg"),

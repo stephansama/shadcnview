@@ -4,6 +4,7 @@ import { Toaster } from "#/components/ui/sonner";
 import { TooltipProvider } from "#/components/ui/tooltip";
 import { PRELOAD_SCRIPT } from "#/lib/preferences";
 import { SNAPSHOT_PATH } from "#/lib/snapshot";
+import { useThemeSync } from "#/lib/theme";
 
 import appCss from "../styles.css?url";
 
@@ -54,6 +55,8 @@ export const Route = createRootRoute({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+	// follow the os appearance and other tabs, not just the toggle
+	useThemeSync();
 	return (
 		// the preload script sets the theme class and attributes here before react hydrates
 		<html lang="en" suppressHydrationWarning>

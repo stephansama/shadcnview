@@ -454,7 +454,7 @@ function GroupRow({
 					name={row.getIsExpanded() ? "chevronDown" : "chevronRight"}
 				/>
 				<RegistryFavicon favicon={status?.favicon} />
-				<span className="font-medium">
+				<span className="shrink-0 font-medium whitespace-nowrap">
 					{/* any row of the group carries the registry name's matches */}
 					<Highlight
 						field="registry"
@@ -469,7 +469,8 @@ function GroupRow({
 					{row.subRows.length}
 				</Badge>
 				{status && (
-					<span className="min-w-0 truncate text-xs text-muted-foreground">
+					// too little room left on phones for the description to say anything
+					<span className="min-w-0 truncate text-xs text-muted-foreground max-sm:hidden">
 						- {status.registry.description}
 					</span>
 				)}

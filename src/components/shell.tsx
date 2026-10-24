@@ -153,14 +153,16 @@ export function Shell() {
 								<RegistryFavicon
 									favicon={summary?.registries[registry.name]?.favicon}
 								/>
-								<span className="font-medium">{registry.name}</span>
+								<span className="shrink-0 font-medium whitespace-nowrap">
+									{registry.name}
+								</span>
 								<Badge
 									className="rounded-sm px-1.5 font-normal tabular-nums"
 									variant="outline"
 								>
 									{summary?.registries[registry.name]?.count ?? 0}
 								</Badge>
-								<span className="min-w-0 truncate text-xs text-muted-foreground">
+								<span className="min-w-0 truncate text-xs text-muted-foreground max-sm:hidden">
 									- {registry.description}
 								</span>
 								<span className="ml-auto flex" data-group-framework>

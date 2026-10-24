@@ -1,3 +1,15 @@
+# v0.2.2 (Sat Oct 24 2026)
+
+#### 🐛 Bug Fix
+
+- Merge pull request #1 from stephansama/fix/mobile-pane-fouc [#1](https://github.com/stephansama/shadcnview/pull/1) ([@stephansama](https://github.com/stephansama))
+
+#### Authors: 1
+
+- Stephan Randle ([@stephansama](https://github.com/stephansama))
+
+---
+
 # v0.2.1 (Sat Oct 24 2026)
 
 #### 🐛 Bug Fix

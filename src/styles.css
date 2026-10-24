@@ -1,0 +1,123 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource-variable/jetbrains-mono";
+
+@custom-variant dark (&:is(.dark *));
+
+/* dark only, a slate-ish terminal palette */
+:root {
+	--background: oklch(0.19 0.012 264);
+	--foreground: oklch(0.93 0.008 264);
+	--card: oklch(0.215 0.012 264);
+	--card-foreground: var(--foreground);
+	--popover: oklch(0.235 0.013 264);
+	--popover-foreground: var(--foreground);
+	--primary: oklch(0.93 0.008 264);
+	--primary-foreground: oklch(0.21 0.012 264);
+	--secondary: oklch(0.26 0.014 264);
+	--secondary-foreground: var(--foreground);
+	--muted: oklch(0.25 0.013 264);
+	--muted-foreground: oklch(0.68 0.015 264);
+	--accent: oklch(0.27 0.016 264);
+	--accent-foreground: var(--foreground);
+	--destructive: oklch(0.6 0.2 25);
+	--destructive-foreground: oklch(0.7 0.19 25);
+	--border: oklch(0.29 0.014 264);
+	--input: oklch(0.31 0.014 264);
+	--ring: oklch(0.5 0.03 264);
+	--radius: 0.25rem;
+
+	/* framework badges */
+	--react: oklch(0.74 0.12 230);
+	--svelte: oklch(0.7 0.18 40);
+	--vue: oklch(0.74 0.15 160);
+}
+
+@theme inline {
+	--font-sans: "JetBrains Mono Variable", ui-monospace, monospace;
+	--font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-destructive-foreground: var(--destructive-foreground);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+	--color-react: var(--react);
+	--color-svelte: var(--svelte);
+	--color-vue: var(--vue);
+	--radius-sm: calc(var(--radius) - 2px);
+	--radius-md: var(--radius);
+	--radius-lg: calc(var(--radius) + 2px);
+	--radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+
+	html,
+	body {
+		@apply h-full overflow-hidden bg-background text-foreground antialiased;
+		color-scheme: dark;
+	}
+}
+
+/*
+ * the prerendered shell (src/components/shell.tsx) shows the detail pane and
+ * remembered open groups before react loads, set by the preload script in
+ * src/lib/preferences.ts
+ */
+.shell-pane {
+	display: none;
+	width: var(--pane, 50%);
+}
+
+@media (min-width: 768px) {
+	html[data-pane="open"] .shell-pane {
+		display: flex;
+	}
+}
+
+html[data-expanded="all"] [data-chevron] {
+	rotate: 90deg;
+}
+
+[data-chevron] {
+	display: inline-flex;
+}
+
+/* columns and icons the url's filters hide, set before paint by the preload script */
+html[data-hidden~="type"] [data-column="type"],
+html[data-hidden~="depCount"] [data-column="depCount"],
+html[data-hidden~="framework"] [data-column="framework"],
+html[data-hidden~="framework"] [data-group-framework] {
+	display: none;
+}
+
+html[data-filtered] [data-shell-filter-count] {
+	display: block;
+}
+
+/* the detail pane's loading bar, sliding across while the preview loads */
+@keyframes preview-progress {
+	from {
+		transform: translateX(-100%);
+	}
+	to {
+		transform: translateX(300%);
+	}
+}

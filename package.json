@@ -1,0 +1,82 @@
+{
+	"name": "shadcnview",
+	"private": true,
+	"type": "module",
+	"imports": {
+		"#/*": "./src/*"
+	},
+	"scripts": {
+		"predev": "pnpm snapshot",
+		"dev": "vite dev --port 3000",
+		"build": "vite build",
+		"prebuild": "pnpm snapshot --force && pnpm og",
+		"preview": "vite preview",
+		"snapshot": "tsx scripts/snapshot.ts",
+		"og": "tsx scripts/og.tsx",
+		"check-pages": "tsx scripts/check-pages.ts",
+		"readme": "tsx scripts/readme.ts",
+		"generate-routes": "tsr generate",
+		"typecheck": "tsc --noEmit",
+		"lint": "eslint .",
+		"format": "prettier --write .",
+		"format:check": "prettier --check ."
+	},
+	"dependencies": {
+		"@fontsource-variable/jetbrains-mono": "catalog:",
+		"@tailwindcss/vite": "catalog:",
+		"@tanstack/react-hotkeys": "catalog:",
+		"@tanstack/react-router": "catalog:",
+		"@tanstack/react-start": "catalog:",
+		"@tanstack/react-table": "catalog:",
+		"@tanstack/react-virtual": "catalog:",
+		"class-variance-authority": "catalog:",
+		"clsx": "catalog:",
+		"fuse.js": "catalog:",
+		"radix-ui": "catalog:",
+		"react": "catalog:",
+		"react-dom": "catalog:",
+		"react-resizable-panels": "catalog:",
+		"sonner": "catalog:",
+		"tailwind-merge": "catalog:",
+		"tailwindcss": "catalog:",
+		"tw-animate-css": "catalog:",
+		"vaul": "catalog:"
+	},
+	"devDependencies": {
+		"@iconify-json/logos": "catalog:",
+		"@iconify-json/lucide": "catalog:",
+		"@iconify-json/simple-icons": "catalog:",
+		"@iconify/types": "catalog:",
+		"@stephansama/eslint-config": "catalog:",
+		"@stephansama/vite-iconify-svgmap": "catalog:",
+		"@tanstack/router-cli": "catalog:",
+		"@types/node": "catalog:",
+		"@types/react": "catalog:",
+		"@types/react-dom": "catalog:",
+		"@vitejs/plugin-react": "catalog:",
+		"eslint": "catalog:",
+		"eslint-plugin-react-hooks": "catalog:",
+		"prettier": "catalog:",
+		"prettier-plugin-tailwindcss": "catalog:",
+		"takumi-js": "catalog:",
+		"tsx": "catalog:",
+		"typescript": "catalog:",
+		"vite": "catalog:"
+	},
+	"engines": {
+		"node": ">=24"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Stephan Randle",
+		"url": "https://stephansama.info"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/stephansama/shadcnview.git"
+	},
+	"bugs": {
+		"url": "https://github.com/stephansama/shadcnview/issues"
+	},
+	"homepage": "https://github.com/stephansama/shadcnview#readme"
+}

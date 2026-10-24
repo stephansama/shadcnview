@@ -1,0 +1,9 @@
+pnpm-lock.yaml
+src/routeTree.gen.ts
+public/data
+public/favicons
+.output
+src/generated
+public/og.png
+public/apple-touch-icon.png
+public/avatar.jpg

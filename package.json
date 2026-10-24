@@ -1,25 +1,40 @@
 {
 	"name": "shadcnview",
 	"private": true,
+	"homepage": "https://github.com/stephansama/shadcnview#readme",
+	"bugs": {
+		"url": "https://github.com/stephansama/shadcnview/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/stephansama/shadcnview.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Stephan Randle",
+		"url": "https://stephansama.info"
+	},
 	"type": "module",
 	"imports": {
 		"#/*": "./src/*"
 	},
 	"scripts": {
+		"prebuild": "pnpm snapshot --force && pnpm og",
+		"build": "vite build",
+		"check-pages": "tsx scripts/check-pages.ts",
+		"commitlint": "commitlint --config .config/commitlint.config.ts",
 		"predev": "pnpm snapshot",
 		"dev": "vite dev --port 3000",
-		"build": "vite build",
-		"prebuild": "pnpm snapshot --force && pnpm og",
-		"preview": "vite preview",
-		"snapshot": "tsx scripts/snapshot.ts",
-		"og": "tsx scripts/og.tsx",
-		"check-pages": "tsx scripts/check-pages.ts",
-		"readme": "tsx scripts/readme.ts",
-		"generate-routes": "tsr generate",
-		"typecheck": "tsc --noEmit",
-		"lint": "eslint .",
 		"format": "prettier --write .",
-		"format:check": "prettier --check ."
+		"format:check": "prettier --check .",
+		"generate-routes": "tsr generate",
+		"lint": "eslint .",
+		"og": "tsx scripts/og.tsx",
+		"prepare": "lefthook install",
+		"preview": "vite preview",
+		"readme": "tsx scripts/readme.ts && auto-readme",
+		"snapshot": "tsx scripts/snapshot.ts",
+		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@fontsource-variable/jetbrains-mono": "catalog:",
@@ -43,10 +58,17 @@
 		"vaul": "catalog:"
 	},
 	"devDependencies": {
+		"@auto-it/conventional-commits": "catalog:",
+		"@auto-it/git-tag": "catalog:",
+		"@auto-it/released": "catalog:",
+		"@commitlint/cli": "catalog:",
+		"@commitlint/config-conventional": "catalog:",
+		"@commitlint/types": "catalog:",
 		"@iconify-json/logos": "catalog:",
 		"@iconify-json/lucide": "catalog:",
 		"@iconify-json/simple-icons": "catalog:",
 		"@iconify/types": "catalog:",
+		"@stephansama/auto-readme": "catalog:",
 		"@stephansama/eslint-config": "catalog:",
 		"@stephansama/vite-iconify-svgmap": "catalog:",
 		"@tanstack/router-cli": "catalog:",
@@ -54,29 +76,21 @@
 		"@types/react": "catalog:",
 		"@types/react-dom": "catalog:",
 		"@vitejs/plugin-react": "catalog:",
+		"auto": "catalog:",
 		"eslint": "catalog:",
 		"eslint-plugin-react-hooks": "catalog:",
+		"lefthook": "catalog:",
+		"lint-staged": "catalog:",
 		"prettier": "catalog:",
+		"prettier-plugin-packagejson": "catalog:",
 		"prettier-plugin-tailwindcss": "catalog:",
 		"takumi-js": "catalog:",
 		"tsx": "catalog:",
 		"typescript": "catalog:",
 		"vite": "catalog:"
 	},
+	"packageManager": "pnpm@10.33.4",
 	"engines": {
 		"node": ">=24"
-	},
-	"license": "MIT",
-	"author": {
-		"name": "Stephan Randle",
-		"url": "https://stephansama.info"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/stephansama/shadcnview.git"
-	},
-	"bugs": {
-		"url": "https://github.com/stephansama/shadcnview/issues"
-	},
-	"homepage": "https://github.com/stephansama/shadcnview#readme"
+	}
 }

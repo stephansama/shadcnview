@@ -2,11 +2,18 @@ allowBuilds:
   esbuild: true
   lightningcss: true
 catalog:
+  '@auto-it/conventional-commits': ^11.3.6
+  '@auto-it/git-tag': ^11.3.6
+  '@auto-it/released': ^11.3.6
+  '@commitlint/cli': ^21.2.4
+  '@commitlint/config-conventional': ^21.2.4
+  '@commitlint/types': ^21.2.3
   "@fontsource-variable/jetbrains-mono": ^5.3.0
   "@iconify-json/logos": ^1.2.17
   "@iconify-json/lucide": ^1.2.147
   "@iconify-json/simple-icons": ^1.2.100
   "@iconify/types": ^2.0.0
+  '@stephansama/auto-readme': ^0.6.1
   "@stephansama/eslint-config": ^0.2.3
   "@stephansama/vite-iconify-svgmap": ^0.2.1
   "@tailwindcss/vite": ^4.1.18
@@ -20,12 +27,16 @@ catalog:
   "@types/react": ^19.2.0
   "@types/react-dom": ^19.2.0
   "@vitejs/plugin-react": ^6.0.1
+  auto: ^11.3.6
   class-variance-authority: ^0.7.1
   clsx: ^2.1.1
   eslint: ^10.13.0
   eslint-plugin-react-hooks: ^7.1.1
   fuse.js: ^7.5.0
+  lefthook: ^2.2.2
+  lint-staged: ^17.6.0
   prettier: ^3.9.10
+  prettier-plugin-packagejson: ^3.0.2
   prettier-plugin-tailwindcss: ^0.8.1
   radix-ui: ^1.8.1
   react: ^19.2.0

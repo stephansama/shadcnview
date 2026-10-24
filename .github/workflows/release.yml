@@ -1,0 +1,40 @@
+# Releases every push to main with intuit auto: conventional commit messages
+# pick the version bump, auto tags it, writes the changelog and creates the
+# github release (see .autorc)
+name: release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+# one release at a time, never cancel one that's tagging
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    # auto's own changelog commit carries [skip ci]
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # auto needs the full history and tags to find the last release
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm auto shipit
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

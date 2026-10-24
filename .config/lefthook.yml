@@ -1,0 +1,28 @@
+# git hooks, installed by `pnpm install` through the `prepare` script
+
+pre-commit:
+  # one after the other, the readme update has to be staged before lint-staged runs
+  piped: true
+  jobs:
+    # dependency badges and the table of contents follow package.json and the
+    # readme's headings
+    - name: auto-readme
+      glob:
+        - package.json
+        - pnpm-workspace.yaml
+        - README.md
+      run: pnpm auto-readme && git add README.md
+    # prettier then eslint on the staged files, see lint-staged.config.ts
+    - name: lint-staged
+      run: pnpm lint-staged --config .config/lint-staged.config.ts
+
+commit-msg:
+  jobs:
+    # conventional commits, auto reads them to version releases
+    - name: commitlint
+      run: pnpm commitlint --edit {1}
+
+pre-push:
+  jobs:
+    - name: typecheck
+      run: pnpm typecheck

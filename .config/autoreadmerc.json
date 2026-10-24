@@ -1,0 +1,7 @@
+{
+	"$comment": "keeps the readme's dependency badges and table of contents current, the registry table comes from `pnpm readme`. affectedRegexes and collapseHeadings are required by the 0.6.1 schema",
+	"affectedRegexes": [],
+	"collapseHeadings": [],
+	"disableEmojis": true,
+	"enableToc": true
+}

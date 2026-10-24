@@ -7,3 +7,5 @@ src/generated
 public/og.png
 public/apple-touch-icon.png
 public/avatar.jpg
+# written by pnpm in its own style
+pnpm-workspace.yaml

@@ -1,8 +1,41 @@
+<div align="center">
+
+<a href="https://shadcnview.vercel.app"><img alt="shadcnview, every shadcn registry in one table" src="https://shadcnview.vercel.app/og.png" width="720" /></a>
+
 # shadcnview
+
+<!-- BADGE start -->
+
+[![radix-ui](https://img.shields.io/badge/radix--ui-^1.8.1-161618.svg?logo=radixui&logoColor=ffffff&labelColor=161618)](https://npmx.dev/package/radix-ui)
+[![react](https://img.shields.io/badge/react-^19.2.0-61DAFB.svg?logo=react&logoColor=ffffff&labelColor=61DAFB)](https://npmx.dev/package/react)
+[![tailwindcss](https://img.shields.io/badge/tailwindcss-^4.1.18-06B6D4.svg?logo=tailwindcss&logoColor=ffffff&labelColor=06B6D4)](https://npmx.dev/package/tailwindcss)
+[![@commitlint/cli](https://img.shields.io/badge/@commitlint/cli-^21.2.4-000000.svg?logo=commitlint&logoColor=ffffff&labelColor=000000)](https://npmx.dev/package/@commitlint/cli)
+[![@iconify/types](https://img.shields.io/badge/@iconify/types-^2.0.0-026C9C.svg?logo=iconify&logoColor=ffffff&labelColor=026C9C)](https://npmx.dev/package/@iconify/types)
+[![eslint](https://img.shields.io/badge/eslint-^10.13.0-4B32C3.svg?logo=eslint&logoColor=ffffff&labelColor=4B32C3)](https://npmx.dev/package/eslint)
+[![lefthook](https://img.shields.io/badge/lefthook-^2.2.2-FF1E1E.svg?logo=lefthook&logoColor=ffffff&labelColor=FF1E1E)](https://npmx.dev/package/lefthook)
+[![prettier](https://img.shields.io/badge/prettier-^3.9.10-F7B93E.svg?logo=prettier&logoColor=ffffff&labelColor=F7B93E)](https://npmx.dev/package/prettier)
+[![typescript](https://img.shields.io/badge/typescript-^6.0.2-3178C6.svg?logo=typescript&logoColor=ffffff&labelColor=3178C6)](https://npmx.dev/package/typescript)
+[![vite](https://img.shields.io/badge/vite-^8.0.0-9135FF.svg?logo=vite&logoColor=ffffff&labelColor=9135FF)](https://npmx.dev/package/vite)
+
+<!-- BADGE end -->
+
+</div>
 
 Browse every [shadcn](https://ui.shadcn.com) registry in one table: React, Svelte and Vue. Search ~29k components, filter by framework, type, registry or zero dependencies (all kept in the url, so filtered views are shareable), see each one's type, description and dependencies, copy its add command, and open its docs page in a side pane.
 
-Built with TanStack Start (static), TanStack Table, TanStack Virtual, TanStack Hotkeys and shadcn/ui.
+## Table of contents
+
+<details><summary>Open Table of contents</summary>
+
+- [Supported registries](#supported-registries)
+  - [Not included](#not-included)
+- [Adding a registry](#adding-a-registry)
+- [Development](#development)
+  - [Keys](#keys)
+- [Commits and releases](#commits-and-releases)
+- [License](#license)
+
+</details>
 
 ## Supported registries
 
@@ -175,7 +208,7 @@ Most entries come from [awesome-shadcn-ui](https://github.com/birobirobiro/aweso
    - `discover`: only if the registry serves item json but no index. It returns the item names (`componentsInNav` reads them from a docs page) and the snapshot fetches each item, with `index` as the base url they resolve against.
    - `cli`: only if the registry installs through its own cli, e.g. `npx @react-native-reusables/cli@latest add`.
 2. Run `pnpm snapshot --force && pnpm check-pages <name>`. This samples items and reports 404 pages, framing headers and missing item json.
-3. Run `pnpm readme` to update the table above.
+3. Run `pnpm readme` to update the table above (and the badges and table of contents).
 
 ## Development
 
@@ -206,6 +239,14 @@ The open graph card (`public/og.png`) is rendered from that snapshot by `scripts
 | `o`     | open the docs page in a tab      |
 | `z`     | collapse / expand every group    |
 | `esc`   | close the pane                   |
+
+## Commits and releases
+
+- Commits follow [conventional commits](https://www.conventionalcommits.org) (`feat:`, `fix:`, `chore:` …), checked by commitlint (`.config/commitlint.config.ts`).
+- [lefthook](https://lefthook.dev) (`.config/lefthook.yml`) runs [lint-staged](https://github.com/lint-staged/lint-staged) before each commit (Prettier then ESLint on staged files, `.config/lint-staged.config.ts`), commitlint on the message, and a typecheck before each push. `pnpm install` sets the hooks up.
+- [auto-readme](https://github.com/stephansama/packages/tree/main/core/auto-readme) (`.config/autoreadmerc.json`) keeps this readme's dependency badges and table of contents current. It runs in the pre-commit hook when `package.json` or the readme changes, and with `pnpm readme`.
+- Every push to `main` is released by [auto](https://intuit.github.io/auto) (`.github/workflows/release.yml`): the commit messages pick the version bump, and auto tags it, updates `CHANGELOG.md` and creates a GitHub release. The app isn't published to npm.
+- Pull requests run commitlint, ESLint, Prettier and the typecheck (`.github/workflows/ci.yml`).
 
 ## License
 

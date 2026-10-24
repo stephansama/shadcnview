@@ -453,6 +453,9 @@ function Viewer() {
 			{/* phones get the preview as a bottom sheet instead of a side panel */}
 			{isMobile && (
 				<Drawer
+					// already open when it mounts (a shared link, where the shell drew it
+					// before paint) means no slide in, later opens still animate
+					defaultOpen={Boolean(openRow)}
 					onOpenChange={(next) => {
 						if (!next) openFresh();
 					}}

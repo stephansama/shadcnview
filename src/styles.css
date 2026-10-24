@@ -112,9 +112,19 @@
 	width: var(--pane, 50%);
 }
 
+.shell-drawer {
+	display: none;
+}
+
 @media (min-width: 768px) {
 	html[data-pane="open"] .shell-pane {
 		display: flex;
+	}
+}
+
+@media (max-width: 767px) {
+	html[data-pane="open"] .shell-drawer {
+		display: block;
 	}
 }
 

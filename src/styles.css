@@ -112,10 +112,30 @@
 	width: var(--pane, 50%);
 }
 
+.shell-drawer {
+	display: none;
+}
+
 @media (min-width: 768px) {
 	html[data-pane="open"] .shell-pane {
 		display: flex;
 	}
+}
+
+@media (max-width: 767px) {
+	html[data-pane="open"] .shell-drawer {
+		display: block;
+	}
+}
+
+/*
+ * the drawer that replaces it is already in place, not sliding in. vaul's own
+ * no-animation flag only holds until the drawer's next render. Closing still
+ * animates, the flag is cleared once it's closed
+ */
+html[data-pane="open"] [data-vaul-drawer][data-state="open"],
+html[data-pane="open"] [data-vaul-overlay][data-state="open"] {
+	animation: none !important;
 }
 
 html[data-expanded="all"] [data-chevron] {

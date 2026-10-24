@@ -2,7 +2,7 @@ import type { ExpandedState } from "@tanstack/react-table";
 
 import { useHotkey } from "@tanstack/react-hotkeys";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 import { AboutPopover } from "#/components/about-popover";
 import { DetailPane } from "#/components/detail-pane";
@@ -185,6 +185,14 @@ function Viewer() {
 							.map(([id]) => id.replace("registry:", "")),
 		});
 	}, [expandedState, searching]);
+
+	// the preload script marks a pane opened from the url, which keeps the
+	// drawer from sliding in over the one the shell already drew (see
+	// src/styles.css). Cleared once it closes, so later opens animate
+	const paneOpen = Boolean(openRow);
+	useLayoutEffect(() => {
+		if (!paneOpen) delete document.documentElement.dataset.pane;
+	}, [paneOpen]);
 
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const filterRef = useRef<HTMLInputElement>(null);

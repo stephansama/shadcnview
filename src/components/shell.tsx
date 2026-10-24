@@ -3,7 +3,8 @@
 // markup and sizes as the live table. It's what gets prerendered, so a refresh
 // paints the finished layout straight away instead of a skeleton. The inline
 // preload script (`src/lib/preferences.ts`) has already opened the detail pane
-// and pointed the chevrons of remembered groups by the time this paints.
+// (the bottom drawer on phones) and pointed the chevrons of remembered groups
+// by the time this paints.
 
 import { useSyncExternalStore } from "react";
 
@@ -152,14 +153,16 @@ export function Shell() {
 								<RegistryFavicon
 									favicon={summary?.registries[registry.name]?.favicon}
 								/>
-								<span className="font-medium">{registry.name}</span>
+								<span className="shrink-0 font-medium whitespace-nowrap">
+									{registry.name}
+								</span>
 								<Badge
 									className="rounded-sm px-1.5 font-normal tabular-nums"
 									variant="outline"
 								>
 									{summary?.registries[registry.name]?.count ?? 0}
 								</Badge>
-								<span className="min-w-0 truncate text-xs text-muted-foreground">
+								<span className="min-w-0 truncate text-xs text-muted-foreground max-sm:hidden">
 									- {registry.description}
 								</span>
 								<span className="ml-auto flex" data-group-framework>
@@ -172,13 +175,17 @@ export function Shell() {
 
 				{/* shown by the preload script when the url has `?item=`, at the remembered width */}
 				<div className="shell-pane min-w-0 flex-col border-l">
-					<div className="flex items-start gap-3 border-b px-4 py-3">
-						<div className="min-w-0 flex-1">
-							<h2 className="truncate text-base font-medium">{title}</h2>
-							<p className="text-sm text-muted-foreground">&nbsp;</p>
-						</div>
-					</div>
+					<PaneHeader title={title} />
 					<div className="flex-1 bg-background" />
+				</div>
+			</div>
+
+			{/* the same on phones, laid out like the bottom drawer it turns into */}
+			<div className="shell-drawer">
+				<div className="fixed inset-0 z-50 bg-black/50" />
+				<div className="fixed inset-x-0 bottom-0 z-50 mt-24 flex h-[88dvh] max-h-[88dvh] flex-col rounded-t-lg border-t bg-background">
+					<div className="mx-auto mt-4 h-2 w-[100px] shrink-0 rounded-full bg-muted" />
+					<PaneHeader title={title} />
 				</div>
 			</div>
 
@@ -187,6 +194,17 @@ export function Shell() {
 				shown={total}
 				total={total}
 			/>
+		</div>
+	);
+}
+
+function PaneHeader({ title }: { title: string }) {
+	return (
+		<div className="flex items-start gap-3 border-b px-4 py-3">
+			<div className="min-w-0 flex-1">
+				<h2 className="truncate text-base font-medium">{title}</h2>
+				<p className="text-sm text-muted-foreground">&nbsp;</p>
+			</div>
 		</div>
 	);
 }

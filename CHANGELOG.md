@@ -1,3 +1,15 @@
+# v0.2.1 (Sat Oct 24 2026)
+
+#### 🐛 Bug Fix
+
+- chore: sync theme to system ([@stephansama](https://github.com/stephansama))
+
+#### Authors: 1
+
+- Stephan Randle ([@stephansama](https://github.com/stephansama))
+
+---
+
 # v0.2.0 (Sat Oct 24 2026)
 
 #### 🚀 Enhancement
